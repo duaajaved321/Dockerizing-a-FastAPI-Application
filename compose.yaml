@@ -1,0 +1,17 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: patient-vitals-api:latest
+    container_name: patient-vitals-api
+    ports:
+      - "8000:8000"
+    environment:
+      DB_PATH: /data/patient_vitals.db
+    volumes:
+      - patient_vitals_data:/data
+    restart: unless-stopped
+
+volumes:
+  patient_vitals_data:
